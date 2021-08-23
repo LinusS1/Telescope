@@ -135,17 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				1514238C26CDCF6B009C2C8B /* TelescopeApp.swift */,
-				1540565B26D0BAF400401495 /* StarSidebar.swift */,
-				1540566126D0C62700401495 /* StarSidebarCell.swift */,
-				1514238D26CDCF6B009C2C8B /* ContentView.swift */,
-				15EC21A526D3394F0043BC0C /* StarDetailView.swift */,
+				15EC21A926D34AB70043BC0C /* Views */,
+				15EC21A826D34A4C0043BC0C /* Models */,
 				1514238F26CDCF6D009C2C8B /* Assets.xcassets */,
-				1514238A26CDCF6B009C2C8B /* Telescope.xcdatamodeld */,
-				1514238E26CDCF6B009C2C8B /* Persistence.swift */,
-				151423CB26CDD197009C2C8B /* CoreData+Convenience.swift */,
-				1540565E26D0BB7600401495 /* String+Convenience.swift */,
-				15E0589D26D1A58100C0871A /* Star+CoreDataClass.swift */,
-				15E0589E26D1A58100C0871A /* Star+CoreDataProperties.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -203,6 +195,30 @@
 				159BEBDA26CE1928009FEC7B /* Telescope (iOS).entitlements */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		15EC21A826D34A4C0043BC0C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1514238A26CDCF6B009C2C8B /* Telescope.xcdatamodeld */,
+				1514238E26CDCF6B009C2C8B /* Persistence.swift */,
+				151423CB26CDD197009C2C8B /* CoreData+Convenience.swift */,
+				1540565E26D0BB7600401495 /* String+Convenience.swift */,
+				15E0589D26D1A58100C0871A /* Star+CoreDataClass.swift */,
+				15E0589E26D1A58100C0871A /* Star+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		15EC21A926D34AB70043BC0C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1514238D26CDCF6B009C2C8B /* ContentView.swift */,
+				1540565B26D0BAF400401495 /* StarSidebar.swift */,
+				1540566126D0C62700401495 /* StarSidebarCell.swift */,
+				15EC21A526D3394F0043BC0C /* StarDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
