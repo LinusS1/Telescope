@@ -24,6 +24,14 @@ struct StarSidebar: View {
                 } label: {
                     StarSidebarCell(star: star)
                 }
+                .onDeleteCommand {
+                    deleteStar(star)
+                }
+                .contextMenu {
+                    Button("Delete") {
+                        deleteStar(star)
+                    }
+                }
             }
             .onDelete(perform: deleteStars)
         }
@@ -52,6 +60,13 @@ struct StarSidebar: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+        }
+    }
+    
+    private func deleteStar(_ star: Star) {
+        withAnimation {
+            viewContext.delete(star)
+            try! viewContext.save()
         }
     }
 }

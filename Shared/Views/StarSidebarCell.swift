@@ -35,14 +35,6 @@ struct StarSidebarCell: View {
                     .transition(.move(edge: .top))
             }
         }
-        .onDeleteCommand {
-            deleteStar(star)
-        }
-        .contextMenu {
-            Button("Delete") {
-                deleteStar(star)
-            }
-        }
     }
     
     private func deleteStar(_ star: Star) {
