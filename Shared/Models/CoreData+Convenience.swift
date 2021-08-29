@@ -51,7 +51,7 @@ extension NSManagedObjectContext {
 //            guard let window = UIApplication.shared.delegate?.window,
 //                let viewController = window?.rootViewController else { return }
             
-            fatalError("###\(#file) \(#function) L\(#line): Failed to save the context when \(contextualInfo.rawValue).")
+            fatalError("### \(#file) \(#function) L\(#line): Failed to save the context when \(contextualInfo.rawValue).")
 //            // Append message to existing alert if present
 //            if let currentAlert = viewController.presentedViewController as? UIAlertController {
 //                currentAlert.message = (currentAlert.message ?? "") + "\n\n\(message)"

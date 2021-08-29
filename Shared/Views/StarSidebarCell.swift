@@ -24,18 +24,15 @@ struct StarSidebarCell: View {
                     .animation(.default)
                     .transition(.move(edge: .trailing))
             }
-            Text(star.wrappedDescription)
+            Text(star.wrappedNotes)
                 .lineLimit(4)
                 .truncationMode(.tail)
             if star.reminderTime != nil,
                Calendar.current.isDateInToday(star.reminderTime!) {
-                HStack(alignment: .center) {
-                    Image(systemName: "hourglass")
-                    Text(star.reminderTime!, formatter: dateFormatter)
-                }
-                .font(.caption)
-                .animation(.default)
-                .transition(.move(edge: .bottom))
+                STLabel(systemImage: "hourglass", content: Text(star.reminderTime!, formatter: dateFormatter))
+                    .font(.caption)
+                    .animation(.default)
+                    .transition(.move(edge: .top))
             }
         }
         .onDeleteCommand {
@@ -60,6 +57,6 @@ struct StarSidebarCell: View {
 fileprivate let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .none
-    formatter.timeStyle = .medium
+    formatter.timeStyle = .short
     return formatter
 }()

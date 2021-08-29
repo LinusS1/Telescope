@@ -17,7 +17,6 @@ extension Star {
     }
 
     @NSManaged public var content: Data?
-    @NSManaged public var contentDescription: String?
     @NSManaged public var contentUTI: String?
     @NSManaged public var creationDate: Date?
     @NSManaged public var dateLookedAt: Date?
@@ -42,8 +41,8 @@ extension Star {
         name ?? "Unknown Name"
     }
     
-    public var wrappedDescription: String {
-        contentDescription ?? "Unknown Description"
+    public var wrappedNotes: String {
+        notes ?? ""
     }
 }
 

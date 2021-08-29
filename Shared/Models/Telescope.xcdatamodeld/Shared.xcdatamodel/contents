@@ -2,7 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19197" systemVersion="20G71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Star" representedClassName="Star" syncable="YES">
         <attribute name="content" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" allowsCloudEncryption="YES"/>
-        <attribute name="contentDescription" optional="YES" attributeType="String"/>
         <attribute name="contentUTI" optional="YES" attributeType="String" defaultValueString="public.data"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateLookedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -12,6 +11,6 @@
         <attribute name="reminderTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Star" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="Star" positionX="-63" positionY="-18" width="128" height="149"/>
     </elements>
 </model>

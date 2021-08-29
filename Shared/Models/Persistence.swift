@@ -20,7 +20,7 @@ class PersistenceController {
     init() {
         container = NSPersistentCloudKitContainer(name: "Telescope")
         guard let privateStoreDescription = container.persistentStoreDescriptions.first else {
-            fatalError("###\(#file) \(#function) L\(#line) No Description")
+            fatalError("### \(#file) \(#function) L\(#line) No Description")
         }
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
@@ -37,7 +37,7 @@ class PersistenceController {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-                fatalError("###\(#file) \(#function) L\(#line): Failed to load persistent stores: \(error.localizedDescription)")
+                fatalError("### \(#file) \(#function) L\(#line): Failed to load persistent stores: \(error.localizedDescription)")
             }
         })
         container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
@@ -47,7 +47,7 @@ class PersistenceController {
         do {
             try container.viewContext.setQueryGenerationFrom(.current)
         } catch {
-            fatalError("###\(#file) \(#function) L\(#line): Failed to pin viewContext to the current generation: \(error.localizedDescription)")
+            fatalError("### \(#file) \(#function) L\(#line): Failed to pin viewContext to the current generation: \(error.localizedDescription)")
         }
 
         NotificationCenter.default
@@ -61,7 +61,7 @@ class PersistenceController {
             do {
                 lastHistoryToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSPersistentHistoryToken.self, from: tokenData)
             } catch {
-                print("###\(#function): Failed to unarchive NSPersistentHistoryToken. Error = \(error)")
+                print("### \(#function): Failed to unarchive NSPersistentHistoryToken. Error = \(error)")
             }
         }
     }
@@ -79,7 +79,7 @@ class PersistenceController {
                 do {
                     try data.write(to: tokenFile)
                 } catch {
-                    print("###\(#function): Failed to write token data. Error = \(error)")
+                    print("### \(#function): Failed to write token data. Error = \(error)")
                 }
             }
         }
@@ -93,7 +93,7 @@ class PersistenceController {
                 do {
                     try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
                 } catch {
-                    print("###\(#function): Failed to create persistent container URL. Error = \(error)")
+                    print("### \(#function): Failed to create persistent container URL. Error = \(error)")
                 }
             }
             return url.appendingPathComponent("token.data", isDirectory: false)
