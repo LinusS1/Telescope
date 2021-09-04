@@ -19,6 +19,7 @@ extension AnyTransition {
 
 struct StarDetailView: View {
     @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.openURL) var URLOpener
     @ObservedObject var star: Star
     @State var draftNotes = ""
     @State var isRenaming = false
@@ -44,7 +45,8 @@ struct StarDetailView: View {
                                     startDraftingName()
                                 }
                         }
-                        TextEditor(text: $draftNotes)  // TODO: Align with name
+//                        TextEditor(text: $draftNotes)  // TODO: Align with name
+                        Text(draftNotes)
 //                            .border(Color.secondary, width: 3)
                             .multilineTextAlignment(.leading)
                             .allowsTightening(true)
@@ -73,10 +75,15 @@ struct StarDetailView: View {
                     switch ContentType(rawValue: star.wrappedContentUTI)! {
                     case .text:
                         Text(String(data: star.wrappedContent, encoding: .utf8)!)
+                    case .url:
+                        Button {
+                            URLOpener.callAsFunction(URL(string: String(data: star.wrappedContent, encoding: .utf8)!)!)  // do stuff with force unwrapping
+                        } label: {
+                            Label("Open \(star.wrappedName)", systemImage: "tray.and.arrow.up")  // Image could be arrow.up.right too
+                        }
                     default:
                         Text("Unknown Content Type")
-//                    case .url:
-//                        <#code#>
+                    
 //                    case .image:
 //                        <#code#>
                     }
