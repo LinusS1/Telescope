@@ -7,74 +7,102 @@
 
 import SwiftUI
 
-enum ContentType: String, Identifiable {
-    var id: String {
-        self.rawValue
-    }
-    
-    case text = "public.string"
-    case url = "public.url"
-    case image = "public.image"
-//    case file = "public.data"
-}
-
 struct StarCreationSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var viewContext
+
+    // MARK: - Draft Variables
+
+    @State var draftText = ""
+    @State private var draftName = ""
+    @State private var draftNotes = ""
+    @State private var isShowingReminder = false
+    @State private var draftReminderDate = Date().sameTimeNextDay()
     
-    @State var draftContentType: ContentType = .text
-    @State var draftText: String = ""
-    @State var draftName: String = ""
-    @State var draftNotes: String = ""
-    @State var draftReminderDate: Date = Date()
-    
+
     var body: some View {
         Form {
-            Section(header: Text("Content")) {
-                TextEditor(text: $draftText)  // TODO: have two areas one for files, another for text. Once text or a file is chosen the other disappears. There will be an x button to clear the file.
-                Picker("Content Type", selection: $draftContentType) {
-                    Text("Text").tag(ContentType.text)
-                    Text("URL").tag(ContentType.url)
-                    Text("Image").tag(ContentType.image)
-//                    Text("File").tag(ContentType.file)
-                }
-                .pickerStyle(.segmented)
-            }
-            Section {
-                TextField("Name", text: $draftName)  // TODO: Autofill based on content, add label
-                Text("Notes:")  // TODO: add support for tabbing through
-                    .font(.caption)
+            Text("Text or URL:")
+                .foregroundColor(.secondary)
+                .font(.caption)
+            TextEditor(text: $draftText) // TODO: switch between text vs. file
+            HStack {
+                Text("or") // TODO: include a clear button
+                    .textCase(.uppercase)
                     .foregroundColor(.secondary)
-                TextEditor(text: $draftNotes)  // TODO: Autofill based on content
-                DatePicker("Reminder", selection: $draftReminderDate, displayedComponents: [.date, .hourAndMinute]) // TODO: make optional, require date to be in future
+                    .font(.caption)
+                if #available(macOS 12.0, *) {
+                    Menu {
+                        Button("Choose Image...") {
+                            print("choose image...")
+                        }
+                    } label: {
+                        Text("Choose File...")
+                    } primaryAction: {
+                        print("choose file")
+                    }
+                } else {
+                    // Fallback on earlier versions
+                    Menu("Choose File...") {
+                        Button("Choose File...") {
+                            print("choose file")
+                        }
+                        Button("Choose Image...") {
+                            print("choose image...")
+                        }
+                    }
+                }
+            }
+            Divider()
+            TextField("Name", text: $draftName)
+            Text("Notes:")
+                .foregroundColor(.secondary)
+                .font(.caption)
+            TextEditor(text: $draftNotes)
+            DisclosureGroup(isExpanded: $isShowingReminder) {
+                DatePicker(selection: $draftReminderDate,  in: Date()..., displayedComponents: [.hourAndMinute, .date]) {
+                    EmptyView()  // TODO: Remove animation and layout shift
+                }
+            } label: {
+                Label("Reminder", systemImage: "hourglass")
             }
             HStack {
-                Button {
+                Spacer()
+                Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
-                    
-                } label: {
-                    Text("Cancel")
+                    #if os(macOS)
+                        NSApp.mainWindow?.endSheet(NSApp.keyWindow!)
+                    #endif
                 }
                 .keyboardShortcut(.cancelAction)
-                
-                Button {
+                Button("Create Star") {
+                    // TODO: create star
                     let draftStar = Star(context: viewContext)
                     draftStar.name = draftName
                     draftStar.notes = draftNotes
                     draftStar.creationDate = Date()
-                    draftStar.reminderTime = draftReminderDate
-                    draftStar.contentUTI = draftContentType.rawValue
-                    draftStar.content = draftText.data(using: .utf8)!
+                    draftStar.contentUTI = ContentType.text.rawValue // TODO: switch based on what is inputted
+                    draftStar.content = draftText.data(using: .utf8)
+                    if isShowingReminder {
+                        draftStar.reminderTime = draftReminderDate
+                    }
+                    do {
+                        try viewContext.save()
+                    } catch {
+                        fatalError("### \(#file) \(#function) L\(#line): Error saving star: \(error.localizedDescription)") // TODO: handle error
+                    }
                     presentationMode.wrappedValue.dismiss()
-                    try! viewContext.save()
-                } label: {
-                    Label("Create Star", systemImage: "plus")
+                    #if os(macOS)
+                        NSApp.mainWindow?.endSheet(NSApp.keyWindow!)
+                    #endif
                 }
                 .keyboardShortcut(.defaultAction)
-                .disabled(((draftName == "") || (draftText == "")))  // TODO: Check for all content
+                .disabled((draftText == "") || (draftName == ""))
             }
         }
+        
         .padding()
+        .frame(minWidth: 400, minHeight: 310)
     }
 }
 

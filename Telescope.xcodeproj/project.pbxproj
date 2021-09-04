@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1503571026E415630049AA1D /* Date+tomorrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503570F26E415630049AA1D /* Date+tomorrow.swift */; };
+		1503571126E415630049AA1D /* Date+tomorrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503570F26E415630049AA1D /* Date+tomorrow.swift */; };
 		151423A426CDCF6D009C2C8B /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151423A326CDCF6D009C2C8B /* Tests_iOS.swift */; };
 		151423A626CDCF6D009C2C8B /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151423A526CDCF6D009C2C8B /* Tests_iOSLaunchTests.swift */; };
 		151423B026CDCF6D009C2C8B /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151423AF26CDCF6D009C2C8B /* Tests_macOS.swift */; };
@@ -31,6 +33,9 @@
 		1540566326D0C62700401495 /* StarSidebarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1540566126D0C62700401495 /* StarSidebarCell.swift */; };
 		1545039A26D5F47D003826C7 /* StarCreationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1545039926D5F47C003826C7 /* StarCreationSheet.swift */; };
 		1545039B26D5F47D003826C7 /* StarCreationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1545039926D5F47C003826C7 /* StarCreationSheet.swift */; };
+		157A61FA26DB5EF20097BB4F /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A61F926DB5EF20097BB4F /* ContentType.swift */; };
+		157A61FB26DB5EF20097BB4F /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A61F926DB5EF20097BB4F /* ContentType.swift */; };
+		157A620026DCA28C0097BB4F /* MacEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A61FF26DCA28C0097BB4F /* MacEditorTextView.swift */; };
 		159BEBD926CE1792009FEC7B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159BEBD826CE1792009FEC7B /* CloudKit.framework */; };
 		159BEBDC26CE192B009FEC7B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159BEBDB26CE192B009FEC7B /* CloudKit.framework */; };
 		15E0589F26D1A58100C0871A /* Star+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0589D26D1A58100C0871A /* Star+CoreDataClass.swift */; };
@@ -63,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1503570F26E415630049AA1D /* Date+tomorrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+tomorrow.swift"; sourceTree = "<group>"; };
 		1514238B26CDCF6B009C2C8B /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1514238C26CDCF6B009C2C8B /* TelescopeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelescopeApp.swift; sourceTree = "<group>"; };
 		1514238D26CDCF6B009C2C8B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 		1540565E26D0BB7600401495 /* String+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Convenience.swift"; sourceTree = "<group>"; };
 		1540566126D0C62700401495 /* StarSidebarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSidebarCell.swift; sourceTree = "<group>"; };
 		1545039926D5F47C003826C7 /* StarCreationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCreationSheet.swift; sourceTree = "<group>"; };
+		157A61F926DB5EF20097BB4F /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentType.swift; path = Shared/Models/ContentType.swift; sourceTree = SOURCE_ROOT; };
+		157A61FF26DCA28C0097BB4F /* MacEditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacEditorTextView.swift; sourceTree = "<group>"; };
 		159BEBD826CE1792009FEC7B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		159BEBDA26CE1928009FEC7B /* Telescope (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Telescope (iOS).entitlements"; sourceTree = "<group>"; };
 		159BEBDB26CE192B009FEC7B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -127,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1503571226E4156C0049AA1D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1503570F26E415630049AA1D /* Date+tomorrow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1514238426CDCF6A009C2C8B = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +163,7 @@
 				15EC21A926D34AB70043BC0C /* Views */,
 				15EC21A826D34A4C0043BC0C /* Models */,
 				1514238F26CDCF6D009C2C8B /* Assets.xcassets */,
+				1503571226E4156C0049AA1D /* Extensions */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -184,8 +201,17 @@
 			isa = PBXGroup;
 			children = (
 				151423CE26CE169F009C2C8B /* Telescope (macOS).entitlements */,
+				157A61FE26DCA28C0097BB4F /* Support Views */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		157A61FE26DCA28C0097BB4F /* Support Views */ = {
+			isa = PBXGroup;
+			children = (
+				157A61FF26DCA28C0097BB4F /* MacEditorTextView.swift */,
+			);
+			path = "Support Views";
 			sourceTree = "<group>";
 		};
 		159BEBD726CE1792009FEC7B /* Frameworks */ = {
@@ -227,6 +253,7 @@
 				1540566126D0C62700401495 /* StarSidebarCell.swift */,
 				15EC21A526D3394F0043BC0C /* StarDetailView.swift */,
 				1545039926D5F47C003826C7 /* StarCreationSheet.swift */,
+				157A61F926DB5EF20097BB4F /* ContentType.swift */,
 				15EC21AA26D34D720043BC0C /* Supporting Views */,
 			);
 			path = Views;
@@ -399,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1503571026E415630049AA1D /* Date+tomorrow.swift in Sources */,
 				1540565C26D0BAF400401495 /* StarSidebar.swift in Sources */,
 				15EC21AF26D357FC0043BC0C /* View+Convenience.swift in Sources */,
 				1545039A26D5F47D003826C7 /* StarCreationSheet.swift in Sources */,
@@ -409,6 +437,7 @@
 				1540566226D0C62700401495 /* StarSidebarCell.swift in Sources */,
 				151423B326CDCF6D009C2C8B /* Telescope.xcdatamodeld in Sources */,
 				15E058A126D1A58100C0871A /* Star+CoreDataProperties.swift in Sources */,
+				157A61FA26DB5EF20097BB4F /* ContentType.swift in Sources */,
 				1540565F26D0BB7600401495 /* String+Convenience.swift in Sources */,
 				151423B726CDCF6D009C2C8B /* ContentView.swift in Sources */,
 				15EC21A626D3394F0043BC0C /* StarDetailView.swift in Sources */,
@@ -420,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157A620026DCA28C0097BB4F /* MacEditorTextView.swift in Sources */,
 				1540565D26D0BAF400401495 /* StarSidebar.swift in Sources */,
 				15EC21B026D357FC0043BC0C /* View+Convenience.swift in Sources */,
 				1545039B26D5F47D003826C7 /* StarCreationSheet.swift in Sources */,
@@ -430,6 +460,8 @@
 				1540566326D0C62700401495 /* StarSidebarCell.swift in Sources */,
 				151423B426CDCF6D009C2C8B /* Telescope.xcdatamodeld in Sources */,
 				15E058A226D1A58100C0871A /* Star+CoreDataProperties.swift in Sources */,
+				1503571126E415630049AA1D /* Date+tomorrow.swift in Sources */,
+				157A61FB26DB5EF20097BB4F /* ContentType.swift in Sources */,
 				1540566026D0BB7600401495 /* String+Convenience.swift in Sources */,
 				151423B826CDCF6D009C2C8B /* ContentView.swift in Sources */,
 				15EC21A726D3394F0043BC0C /* StarDetailView.swift in Sources */,
