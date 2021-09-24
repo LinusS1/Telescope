@@ -13,7 +13,8 @@ struct StarCreationSheet: View {
 
     // MARK: - Draft Variables
 
-    @State var draftText = ""
+    @State var draftData: Data? = Data()
+    @State var draftUTI: String? = nil
     @State private var draftName = ""
     @State private var draftNotes = ""
     @State private var isShowingReminder = false
@@ -22,37 +23,8 @@ struct StarCreationSheet: View {
 
     var body: some View {
         Form {
-            Text("Text or URL:")
-                .foregroundColor(.secondary)
-                .font(.caption)
-            TextEditor(text: $draftText) // TODO: switch between text vs. file
-            HStack {
-                Text("or") // TODO: include a clear button
-                    .textCase(.uppercase)
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-                if #available(macOS 12.0, *) {
-                    Menu {
-                        Button("Choose Image...") {
-                            print("choose image...")
-                        }
-                    } label: {
-                        Text("Choose File...")
-                    } primaryAction: {
-                        print("choose file")
-                    }
-                } else {
-                    // Fallback on earlier versions
-                    Menu("Choose File...") {
-                        Button("Choose File...") {
-                            print("choose file")
-                        }
-                        Button("Choose Image...") {
-                            print("choose image...")
-                        }
-                    }
-                }
-            }
+            StarCreationSheetContent(draftUTI: $draftUTI, draftData: $draftData)
+            
             Divider()
             TextField("Name", text: $draftName)
             Text("Notes:")
@@ -82,7 +54,7 @@ struct StarCreationSheet: View {
                     draftStar.notes = draftNotes
                     draftStar.creationDate = Date()
                     draftStar.contentUTI = ContentType.text.rawValue // TODO: switch based on what is inputted
-                    draftStar.content = draftText.data(using: .utf8)
+                    draftStar.content = draftData!
                     if isShowingReminder {
                         draftStar.reminderTime = draftReminderDate
                     }
@@ -97,7 +69,7 @@ struct StarCreationSheet: View {
                     #endif
                 }
                 .keyboardShortcut(.defaultAction)
-                .disabled((draftText == "") || (draftName == ""))
+                .disabled((draftData == nil) || (draftName == ""))
             }
         }
         

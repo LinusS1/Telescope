@@ -72,10 +72,10 @@ struct StarDetailView: View {
                     .animation(.default)
                 }
                 Group {
-                    switch ContentType(rawValue: star.wrappedContentUTI)! {
-                    case .text:
+                    switch star.wrappedContentUTI {
+                    case "public.string":
                         Text(String(data: star.wrappedContent, encoding: .utf8)!)
-                    case .url:
+                    case "public.url":
                         Button {
                             URLOpener.callAsFunction(URL(string: String(data: star.wrappedContent, encoding: .utf8)!)!)  // do stuff with force unwrapping
                         } label: {
@@ -83,9 +83,7 @@ struct StarDetailView: View {
                         }
                     default:
                         Text("Unknown Content Type")
-                    
-//                    case .image:
-//                        <#code#>
+
                     }
                 }
                 .animation(.default)
