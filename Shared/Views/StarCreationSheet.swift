@@ -72,7 +72,7 @@ struct StarCreationSheet: View {
                 .disabled((draftData == nil) || (draftName == ""))
             }
         }
-        
+        .animation(.easeInOut, value: draftUTI)
         .padding()
         .frame(minWidth: 400, minHeight: 310)
     }
