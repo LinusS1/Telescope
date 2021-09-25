@@ -73,9 +73,9 @@ struct StarDetailView: View {
                 }
                 Group {
                     switch star.wrappedContentUTI {
-                    case "public.string":
+                    case ContentType.text.rawValue:
                         Text(String(data: star.wrappedContent, encoding: .utf8)!)
-                    case "public.url":
+                    case ContentType.url.rawValue:
                         Button {
                             URLOpener.callAsFunction(URL(string: String(data: star.wrappedContent, encoding: .utf8)!)!)  // do stuff with force unwrapping
                         } label: {
