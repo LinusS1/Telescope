@@ -21,8 +21,7 @@ struct StarSidebarCell: View {
                 
                 Text(star.name!)
                     .bold()
-                    .animation(.default)
-                    .transition(.move(edge: .trailing))
+//                    .transition(.move(edge: .trailing))
             }
             Text(star.wrappedNotes)
                 .lineLimit(4)
@@ -31,10 +30,11 @@ struct StarSidebarCell: View {
                Calendar.current.isDateInToday(star.reminderTime!) {
                 STLabel(systemImage: "hourglass", content: Text(star.reminderTime!, formatter: dateFormatter))
                     .font(.caption)
-                    .animation(.default)
-                    .transition(.move(edge: .top))
+//                    .animation(.default)
+//                    .transition(.move(edge: .top))
             }
         }
+//        .animation(.default)
     }
     
     private func deleteStar(_ star: Star) {

@@ -68,7 +68,7 @@ struct StarDetailView: View {
                         Divider()
                     }
                     .foregroundColor(.secondary)
-                    .transition(.slide)  // TODO: Fix sliding dowwn
+//                    .transition(.slide)  // TODO: Fix sliding dowwn
                     .animation(.default)
                 }
                 Group {
