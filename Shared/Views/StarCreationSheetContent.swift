@@ -13,6 +13,8 @@ struct StarCreationSheetContent: View {
     @State var draftText = ""
     @Binding var draftUTI: String?
     @Binding var draftData: Data?
+    @Binding var draftName: String
+    @Binding var draftNotes: String
     
     var body: some View {
         if draftUTI == ContentType.text.rawValue || draftUTI == nil {
@@ -83,7 +85,11 @@ struct StarCreationSheetContent: View {
                     let typeIdentifier = fileURL.typeIdentifier else { return }
                 draftUTI = typeIdentifier.identifier
                 draftData = fileData
-//                print("uti: \(draftUTI) at \(fileURL.absoluteURL)")
+                draftName = fileURL.deletingPathExtension().lastPathComponent
+                let metadataItem = NSMetadataItem(url: fileURL)
+                if let comments = metadataItem?.value(forAttribute: kMDItemFinderComment as String) as? String {
+                    draftNotes = comments
+                }
             }
         }
     }

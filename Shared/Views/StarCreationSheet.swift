@@ -23,7 +23,7 @@ struct StarCreationSheet: View {
 
     var body: some View {
         Form {
-            StarCreationSheetContent(draftUTI: $draftUTI, draftData: $draftData)
+            StarCreationSheetContent(draftUTI: $draftUTI, draftData: $draftData, draftName: $draftName, draftNotes: $draftNotes)
             
             Divider()
             TextField("Name", text: $draftName)
