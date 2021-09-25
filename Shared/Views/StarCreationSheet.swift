@@ -32,13 +32,13 @@ struct StarCreationSheet: View {
                 .font(.caption)
             TextEditor(text: $draftNotes)
                 .disableAutocorrection(false)
-            DisclosureGroup(isExpanded: $isShowingReminder) {
-                DatePicker(selection: $draftReminderDate,  in: Date()..., displayedComponents: [.hourAndMinute, .date]) {
-                    EmptyView()  // TODO: Remove animation and layout shift
-                }
-            } label: {
-                Label("Reminder", systemImage: "hourglass")
-            }
+//            DisclosureGroup(isExpanded: $isShowingReminder) {
+//                DatePicker(selection: $draftReminderDate,  in: Date()..., displayedComponents: [.hourAndMinute, .date]) {
+//                    EmptyView()  // TODO: Remove animation and layout shift
+//                }
+//            } label: {
+//                Label("Reminder", systemImage: "hourglass")
+//            }
             HStack {
                 Spacer()
                 Button("Cancel") {
