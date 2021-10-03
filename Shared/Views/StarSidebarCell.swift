@@ -16,9 +16,7 @@ struct StarSidebarCell: View {
             HStack {
                 if star.lookedAt {
                     Image(systemName: "checkmark.seal")
-                        .animation(.default)
                 }
-                
                 Text(star.name!)
                     .bold()
 //                    .transition(.move(edge: .trailing))

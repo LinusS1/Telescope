@@ -13,7 +13,7 @@ struct StarSidebar: View {
 
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Star.creationDate, ascending: true)], animation: .default)
     private var stars: FetchedResults<Star>
-    
+
     @State private var isShowingNewStarSheet = false
 
     var body: some View {
@@ -21,6 +21,20 @@ struct StarSidebar: View {
             ForEach(stars) { star in
                 NavigationLink {
                     StarDetailView(star: star)
+                        .toolbar {
+                            ToolbarItem {
+                                Button {
+                                    if star.lookedAt {
+                                        markStarAsUnread(star)
+                                    } else {
+                                        markStarAsRead(star)
+                                    }
+                                } label: {
+                                    Label("Mark as \(star.lookedAt ? "Unread" : "Read")", systemImage: star.lookedAt ? "xmark.seal" : "checkmark.seal")
+                                }
+                                .keyboardShortcut("u", modifiers: [.command, .shift])
+                            }
+                        }
                 } label: {
                     StarSidebarCell(star: star)
                 }
@@ -30,6 +44,15 @@ struct StarSidebar: View {
                 .contextMenu {
                     Button("Delete") {
                         deleteStar(star)
+                    }
+                    if star.lookedAt {
+                        Button("Mark as Unread") {
+                            markStarAsUnread(star)
+                        }
+                    } else {
+                        Button("Mark as Read") {
+                            markStarAsRead(star)
+                        }
                     }
                 }
             }
@@ -62,10 +85,26 @@ struct StarSidebar: View {
             }
         }
     }
-    
+
     private func deleteStar(_ star: Star) {
         withAnimation {
             viewContext.delete(star)
+            try! viewContext.save()
+        }
+    }
+
+    private func markStarAsRead(_ star: Star) {
+        withAnimation {
+            star.lookedAt = true
+            star.dateLookedAt = Date()
+            try! viewContext.save()
+        }
+    }
+
+    private func markStarAsUnread(_ star: Star) {
+        withAnimation {
+            star.lookedAt = false
+            star.dateLookedAt = nil
             try! viewContext.save()
         }
     }
