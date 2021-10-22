@@ -14,10 +14,11 @@ struct StarCreationSheetContent: View {
     @Binding var draftData: Data?
     @Binding var draftName: String
     @Binding var draftNotes: String
+    @State var draftFileName = ""
     
     var body: some View {
         if draftUTI == ContentType.text.rawValue || draftUTI == nil {
-            Text("Text or URL:")
+            Text("Text or URL:")  // TODO: Change based on input
                 .foregroundColor(.secondary)
                 .font(.caption)
             TextEditor(text: $draftText) // TODO: switch between text vs. file
@@ -40,6 +41,23 @@ struct StarCreationSheetContent: View {
                 Button("Choose File...") {
                     openOpenFilePanel()
                 }
+                if draftUTI != ContentType.text.rawValue && draftUTI != nil {
+                    HStack {
+                        Text(draftFileName)
+                            .foregroundColor(.secondary)
+                            .font(.caption)
+                        Button {
+                            draftUTI = nil
+                            draftData = nil
+                            draftName.clear()
+                            draftNotes.clear()
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.secondary)
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                }
             }
         }
     }
@@ -57,6 +75,7 @@ struct StarCreationSheetContent: View {
                 draftUTI = typeIdentifier.identifier
                 draftData = fileData
                 draftName = fileURL.deletingPathExtension().lastPathComponent
+                draftFileName = fileURL.lastPathComponent
                 let metadataItem = NSMetadataItem(url: fileURL)
                 if let comments = metadataItem?.value(forAttribute: kMDItemFinderComment as String) as? String {
                     draftNotes = comments
