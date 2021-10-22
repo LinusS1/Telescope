@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import Quartz
 
 
 struct StarCreationSheetContent: View {
@@ -41,37 +40,9 @@ struct StarCreationSheetContent: View {
                 Button("Choose File...") {
                     openOpenFilePanel()
                 }
-//                if #available(macOS 12.0, *) {
-//                    Menu {
-//                        Button("Choose Image...") {
-//                            openImageTakerPanel()
-//                        }
-//                    } label: {
-//                        Text("Choose File...")
-//                    } primaryAction: {
-//                        openOpenFilePanel()
-//                    }
-//                } else {
-//                    // Fallback on earlier versions
-//                    Menu("Choose File...") {
-//                        Button("Choose File...") {
-//                            openOpenFilePanel()
-//                        }
-//                        Button("Choose Image...") {
-//                            openImageTakerPanel()
-//                        }
-//                    }
-//                }
             }
         }
     }
-    
-//    func openImageTakerPanel() {
-//        let pictureTaker = IKPictureTaker.pictureTaker()
-////        pictureTaker?.setValue(true as NSNumber, forKey: IKPictureTakerShowEffectsKey)  // really, linus? TODO: Fix
-//        pictureTaker?.runModal()
-//        guard let picture = pictureTaker?.outputImage() else { return }
-//    }
     
     func openOpenFilePanel() {
         let panel = NSOpenPanel()
