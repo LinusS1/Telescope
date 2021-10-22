@@ -54,7 +54,7 @@ struct StarCreationSheet: View {
                     draftStar.name = draftName
                     draftStar.notes = draftNotes
                     draftStar.creationDate = Date()
-                    draftStar.contentUTI = ContentType.text.rawValue // TODO: switch based on what is inputted
+                    draftStar.contentUTI = draftUTI ?? "public.data"
                     draftStar.content = draftData!
                     if isShowingReminder {
                         draftStar.reminderTime = draftReminderDate
