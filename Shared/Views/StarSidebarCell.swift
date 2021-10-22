@@ -17,7 +17,7 @@ struct StarSidebarCell: View {
                 if star.lookedAt {
                     Image(systemName: "checkmark.seal")
                 }
-                Text(star.name!)
+                Text(star.wrappedName)
                     .bold()
 //                    .transition(.move(edge: .trailing))
             }
