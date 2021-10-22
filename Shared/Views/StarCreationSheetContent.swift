@@ -18,8 +18,8 @@ struct StarCreationSheetContent: View {
     let URLDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
     
     var body: some View {
-        if draftUTI == ContentType.text.rawValue || draftUTI == nil {
-            Text("Text or URL:")  // TODO: Change based on input
+        if draftUTI == ContentType.text.rawValue || draftUTI == nil || draftUTI == ContentType.url.rawValue {  // TODO: Save the earth: Sustainability
+            Text((draftUTI == nil) ? "Text or URL:" : (draftUTI == ContentType.text.rawValue) ? "Text:" : "URL:")
                 .foregroundColor(.secondary)
                 .font(.caption)
             TextEditor(text: $draftText) // TODO: switch between text vs. file
