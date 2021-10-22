@@ -15,6 +15,7 @@ struct StarCreationSheetContent: View {
     @Binding var draftName: String
     @Binding var draftNotes: String
     @State var draftFileName = ""
+    let URLDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
     
     var body: some View {
         if draftUTI == ContentType.text.rawValue || draftUTI == nil {
@@ -23,14 +24,24 @@ struct StarCreationSheetContent: View {
                 .font(.caption)
             TextEditor(text: $draftText) // TODO: switch between text vs. file
                 .onChange(of: draftText) { newValue in
+                    let matches = URLDataDetector.matches(in: newValue, options: [], range: NSRange(location: 0, length: newValue.utf16.count))
+                    if let match = matches.first {
+                        guard let range = Range(match.range, in: newValue) else { return }
+                        let url = newValue[range]
+                        draftData = url.data(using: .utf8)
+                        draftUTI = ContentType.url.rawValue
+                        return
+                    }
+                    
                     draftData = newValue.data(using: .utf8)
                     draftUTI = ContentType.text.rawValue
+                    
                     if newValue == "" {
                         draftUTI = nil
                     }
                 }
         }
-        if draftUTI != ContentType.text.rawValue {
+        if draftUTI != ContentType.text.rawValue && draftUTI != ContentType.url.rawValue {  // TODO: Make this more sustainable
             HStack {
                 if draftUTI == nil {
                     Text("or") // TODO: include a clear button
@@ -41,7 +52,7 @@ struct StarCreationSheetContent: View {
                 Button("Choose File...") {
                     openOpenFilePanel()
                 }
-                if draftUTI != ContentType.text.rawValue && draftUTI != nil {
+                if (draftUTI != ContentType.text.rawValue || draftUTI != ContentType.url.rawValue) && draftUTI != nil {
                     HStack {
                         Text(draftFileName)
                             .foregroundColor(.secondary)
